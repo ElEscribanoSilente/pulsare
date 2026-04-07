@@ -5,6 +5,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Task scheduling without infrastructure. One file. Zero deps.
+
+
 Creado por ElEscribanoSilente y Esraderey
 ```
 pip install pulsare
