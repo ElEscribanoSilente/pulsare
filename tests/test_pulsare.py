@@ -1,4 +1,4 @@
-"""Tests for reloj.py — pytest-based, deterministic where possible.
+"""Tests for pulsare — pytest-based, deterministic where possible.
 
 Uses manual tick_once() calls instead of sleep-based timing loops to
 avoid flaky failures under CI load.  Sleep is only used where thread
@@ -17,7 +17,7 @@ import pytest
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from reloj import (
+from pulsare import (
     Scheduler, _Job, JobMetrics, SQLiteStore,
     every, cron, once, MissedPolicy, _CronSpec,
 )

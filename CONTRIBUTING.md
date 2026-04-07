@@ -1,16 +1,16 @@
-# Contributing to reloj
+# Contributing to pulsare
 
 ## Ground rules
 
-1. **One file, zero deps.** All logic stays in `reloj.py`. No external dependencies. Ever.
+1. **One file, zero deps.** All logic stays in `pulsare.py`. No external dependencies. Ever.
 2. **Tests in `tests/`.** pytest only. No sleep-based timing where avoidable — use `_force_due()` and manual `tick_once()`.
 3. **Don't add features that push toward APScheduler territory.** If someone needs distributed locking, job serialization, or a REST API, they need a different tool.
 
 ## Setup
 
 ```bash
-git clone https://github.com/ElEscribanoSilente/reloj.git
-cd reloj
+git clone https://github.com/ElEscribanoSilente/pulsare.git
+cd pulsare
 pip install pytest
 python -m pytest tests/ -v
 ```
@@ -40,4 +40,4 @@ No virtual environment ceremony needed — there are no dependencies.
 
 ## Releasing
 
-Maintainers only. Bump version in `reloj.py` and `pyproject.toml`, update `CHANGELOG.md`, create a GitHub release. PyPI publish is automated via GitHub Actions.
+Maintainers only. Bump version in `pulsare.py` and `pyproject.toml`, update `CHANGELOG.md`, create a GitHub release. PyPI publish is automated via GitHub Actions.

@@ -27,7 +27,7 @@ jobs:
       - name: Verify package
         run: |
           pip install dist/*.whl
-          python -c "import reloj; print(f'reloj {reloj.__version__}')"
+          python -c "import pulsare; print(f'pulsare {pulsare.__version__}')"
 
       - name: Upload to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

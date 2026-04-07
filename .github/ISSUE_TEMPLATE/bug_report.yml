@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug in reloj
+description: Report a bug in pulsare
 labels: ["bug"]
 
 body:
@@ -31,7 +31,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: reloj version
+      label: pulsare version
       placeholder: "1.0.0"
     validations:
       required: true

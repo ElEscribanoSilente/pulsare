@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "reloj"
+name = "pulsare"
 version = "1.0.0"
 description = "Task scheduling without infrastructure. One file. Zero deps."
 readme = "README.md"
@@ -29,18 +29,18 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ElEscribanoSilente/reloj"
-Repository = "https://github.com/ElEscribanoSilente/reloj"
-Issues = "https://github.com/ElEscribanoSilente/reloj/issues"
-Changelog = "https://github.com/ElEscribanoSilente/reloj/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/ElEscribanoSilente/pulsare"
+Repository = "https://github.com/ElEscribanoSilente/pulsare"
+Issues = "https://github.com/ElEscribanoSilente/pulsare/issues"
+Changelog = "https://github.com/ElEscribanoSilente/pulsare/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]
-include = ["reloj.py"]
+include = ["pulsare.py"]
 exclude = ["tests/", ".github/", ".gitignore", "CHANGELOG.md", "CONTRIBUTING.md", "pyproject.toml"]
 
 [tool.hatch.build.targets.sdist]
-include = ["reloj.py", "tests/", "LICENSE", "README.md", "CHANGELOG.md", "pyproject.toml"]
+include = ["pulsare.py", "tests/", "LICENSE", "README.md", "CHANGELOG.md", "pyproject.toml"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

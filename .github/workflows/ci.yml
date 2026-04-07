@@ -30,4 +30,4 @@ jobs:
         run: python -m pytest tests/ -v
 
       - name: Verify import
-        run: python -c "import reloj; print(f'reloj {reloj.__version__} OK')"
+        run: python -c "import pulsare; print(f'pulsare {pulsare.__version__} OK')"

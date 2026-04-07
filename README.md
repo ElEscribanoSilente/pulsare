@@ -1,14 +1,14 @@
-# reloj
+# pulsare
 
 Task scheduling without infrastructure. One file. Zero deps.
 
 ```
-pip install reloj
+pip install pulsare
 ```
 
-## Why reloj?
+## Why pulsare?
 
-| Feature | schedule | APScheduler | celery beat | **reloj** |
+| Feature | schedule | APScheduler | celery beat | **pulsare** |
 |---|---|---|---|---|
 | Cron expressions | - | + | + | + |
 | Async support | - | + | - | + |
@@ -22,7 +22,7 @@ pip install reloj
 ## Quick start
 
 ```python
-from reloj import Scheduler, every, cron, once
+from pulsare import Scheduler, every, cron, once
 
 s = Scheduler()
 
@@ -138,7 +138,7 @@ s.purge()                   # remove cancelled jobs
 ## Persistence (SQLite)
 
 ```python
-from reloj import Scheduler, SQLiteStore, every
+from pulsare import Scheduler, SQLiteStore, every
 
 store = SQLiteStore("jobs.db")  # WAL mode, zero config
 s = Scheduler(store=store)
@@ -156,7 +156,7 @@ Persists: next_run, metrics, paused flag. Jobs matched by name on restart.
 
 ```python
 import asyncio
-from reloj import Scheduler, every
+from pulsare import Scheduler, every
 
 s = Scheduler()
 
@@ -173,7 +173,7 @@ Async jobs share a persistent event loop -- connection pools, caches, etc. work 
 ## Missed job policies
 
 ```python
-from reloj import MissedPolicy
+from pulsare import MissedPolicy
 
 @s.job(every(1).hours, missed="skip")      # default: reschedule to next slot
 @s.job(every(1).hours, missed="run_once")  # execute once, then resume

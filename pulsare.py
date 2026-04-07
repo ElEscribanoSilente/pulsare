@@ -1,12 +1,12 @@
 """
-reloj.py — Task scheduling without infrastructure. One file. Zero deps.
+pulsare — Task scheduling without infrastructure. One file. Zero deps.
 
 Design trade-offs vs. alternatives:
   - schedule: no cron, no async, no concurrency, no retries, no timeouts
   - APScheduler: full-featured but 15K+ lines, requires SQLAlchemy for stores
   - celery beat: requires broker (Redis/RabbitMQ), massive infrastructure
 
-reloj balances simplicity with real features:
+pulsare balances simplicity with real features:
   OK every(5).seconds / every(2).hours / every().monday fluent API
   OK Cron-style expressions: cron("*/5 * * * *")
   OK One-shot delayed tasks: once(after=30)
@@ -27,7 +27,7 @@ reloj balances simplicity with real features:
   OK ~900 lines of logic, zero external dependencies
 
 Usage:
-    from reloj import Scheduler, every, cron, once
+    from pulsare import Scheduler, every, cron, once
 
     s = Scheduler()
 
@@ -46,7 +46,7 @@ Usage:
     s.run()  # blocking loop (Ctrl+C to stop)
 
 Persistence:
-    from reloj import Scheduler, SQLiteStore, every
+    from pulsare import Scheduler, SQLiteStore, every
 
     store = SQLiteStore("my_jobs.db")
     s = Scheduler(store=store)
@@ -92,7 +92,7 @@ __all__ = [
     "MissedPolicy", "JobMetrics", "JobStore", "SQLiteStore",
 ]
 
-logger = logging.getLogger("reloj")
+logger = logging.getLogger("pulsare")
 
 # ─── Enums ────────────────────────────────────────────────────────────────────
 
@@ -587,7 +587,7 @@ def _run_with_timeout(fn: Callable, timeout: float, cancel_event: threading.Even
         finally:
             done.set()
 
-    t = threading.Thread(target=wrapper, daemon=True, name=f"reloj-timeout-{id(fn):#x}")
+    t = threading.Thread(target=wrapper, daemon=True, name=f"pulsare-timeout-{id(fn):#x}")
     t.start()
     if not done.wait(timeout=timeout):
         if cancel_event is not None:
@@ -728,7 +728,7 @@ class SQLiteStore:
     );
     """
 
-    def __init__(self, path: str = "reloj_jobs.db") -> None:
+    def __init__(self, path: str = "pulsare_jobs.db") -> None:
         self._path = path
         self._conn = sqlite3.connect(path, check_same_thread=False)
         self._conn.execute("PRAGMA journal_mode=WAL")
@@ -1076,7 +1076,7 @@ class Scheduler:
             self._async_thread = threading.Thread(
                 target=self._async_loop.run_forever,
                 daemon=True,
-                name="reloj-async-loop",
+                name="pulsare-async-loop",
             )
             self._async_thread.start()
             # Wait briefly for the loop to actually start running
@@ -1600,7 +1600,7 @@ class Scheduler:
                     # Native async dispatch — real cancellation on timeout
                     task = asyncio.create_task(
                         self._execute_and_finalize_async(job),
-                        name=f"reloj:{job.name}",
+                        name=f"pulsare:{job.name}",
                     )
                     tasks.append(task)
                 else:
