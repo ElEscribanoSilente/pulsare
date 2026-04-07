@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "Raul" },
+    { name = "Raul", email = "msc.framework@gmail.com" },
 ]
 keywords = ["scheduler", "cron", "task", "async", "threading"]
 classifiers = [
@@ -29,10 +29,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/raul/reloj"
-Repository = "https://github.com/raul/reloj"
-Issues = "https://github.com/raul/reloj/issues"
-Changelog = "https://github.com/raul/reloj/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/ElEscribanoSilente/reloj"
+Repository = "https://github.com/ElEscribanoSilente/reloj"
+Issues = "https://github.com/ElEscribanoSilente/reloj/issues"
+Changelog = "https://github.com/ElEscribanoSilente/reloj/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["."]

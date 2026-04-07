@@ -9,7 +9,7 @@
 ## Setup
 
 ```bash
-git clone https://github.com/raul/reloj.git
+git clone https://github.com/ElEscribanoSilente/reloj.git
 cd reloj
 pip install pytest
 python -m pytest tests/ -v
