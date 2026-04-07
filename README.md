@@ -1,5 +1,9 @@
 # pulsare
 
+[![CI](https://github.com/ElEscribanoSilente/pulsare/actions/workflows/ci.yml/badge.svg)](https://github.com/ElEscribanoSilente/pulsare/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/pypi/pyversions/pulsare)](https://pypi.org/project/pulsare/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Task scheduling without infrastructure. One file. Zero deps.
 
 ```
