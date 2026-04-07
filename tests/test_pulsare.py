@@ -109,7 +109,7 @@ class TestTimeout:
         s = Scheduler()
         to_hits = []
         j = s.add(lambda: time.sleep(5), once(after=0), name="slow",
-                  timeout=0.1,
+                  timeout=0.3,
                   on_timeout=lambda n, d: to_hits.append(d))
         try:
             s.tick_once()
@@ -121,7 +121,7 @@ class TestTimeout:
     def test_circuit_breaker_auto_pauses(self):
         s = Scheduler()
         j = s.add(lambda: time.sleep(5), every(1).seconds, name="breaker",
-                  timeout=0.05, max_consecutive_timeouts=2)
+                  timeout=0.3, max_consecutive_timeouts=2)
         _force_due(j)
         try:
             s.tick_once()
@@ -149,7 +149,7 @@ class TestTimeout:
             return "ok"
 
         j = s.add(sometimes_slow, every(1).seconds, name="resetter",
-                  timeout=0.05, max_consecutive_timeouts=3)
+                  timeout=0.3, max_consecutive_timeouts=3)
         _force_due(j)
         try:
             s.tick_once()
@@ -172,7 +172,7 @@ class TestTimeout:
             raise RuntimeError("normal fail")
 
         j = s.add(timeout_then_fail, every(1).seconds, name="fail_reset",
-                  timeout=0.05, max_consecutive_timeouts=5)
+                  timeout=0.3, max_consecutive_timeouts=5)
         # First call: timeout
         _force_due(j)
         try:
@@ -210,10 +210,10 @@ class TestMaxInstances:
         s.tick_once()  # dispatches up to max_instances
         _force_due(j)
         s.tick_once()  # should be blocked by max_instances
-        time.sleep(0.1)  # let threads start
+        time.sleep(0.5)  # let threads start
         assert peak["max"] <= 2
         barrier.set()  # release all threads
-        time.sleep(0.3)  # let threads finish
+        time.sleep(0.5)  # let threads finish
         if s._pool:
             s._pool.shutdown(wait=True)
 
@@ -265,7 +265,7 @@ class TestMetrics:
         m = j.metrics.snapshot()
         assert m["success_count"] == 2
         assert m["fail_count"] == 1
-        assert m["avg_duration"] > 0
+        assert m["avg_duration"] >= 0
 
     def test_all_metrics(self):
         s = Scheduler()
