@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "Raul", email = "msc.framework@gmail.com" },
+    { name = "Escribano Silente", email = "msc.framework@gmail.com" },
 ]
 keywords = ["scheduler", "cron", "task", "async", "threading"]
 classifiers = [

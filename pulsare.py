@@ -58,7 +58,7 @@ Persistence:
     s.run()  # state survives restarts — next_run, metrics, paused flag
 
 License: MIT
-Author: Independent — not affiliated with any framework.
+Author: Escribano Silente (msc.framework@gmail.com)
 """
 
 from __future__ import annotations
